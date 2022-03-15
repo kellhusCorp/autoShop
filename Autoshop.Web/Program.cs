@@ -1,7 +1,15 @@
+using Autoshop.Web;
+using Autoshop.Web.Services;
+using Autoshop.Web.Services.IServices;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddHttpClient<IProductService, ProductService>(
+    SD.ProductAPIBase = "https://localhost:7019/api/products"
+);
 
 var app = builder.Build();
 
