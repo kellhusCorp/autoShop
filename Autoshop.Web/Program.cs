@@ -7,9 +7,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddHttpClient<IProductService, ProductService>(
-    SD.ProductAPIBase = "https://localhost:7019/api/products"
-);
+builder.Services.AddHttpClient<IProductService, ProductService>();
+
+var productsUri = builder.Configuration["ServiceUrls:ProductAPI"];
+
+SD.ProductAPIBase = productsUri;
+
+builder.Services.AddScoped<IProductService, ProductService>();
 
 var app = builder.Build();
 
