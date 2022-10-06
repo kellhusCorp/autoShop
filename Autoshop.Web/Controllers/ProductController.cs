@@ -3,7 +3,7 @@ using Autoshop.Web.Services.IServices;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
-namespace Autoshop.Web.Controllers;
+namespace Autoshop.Web.Controllers; 
 
 public class ProductController : Controller
 {
@@ -14,7 +14,7 @@ public class ProductController : Controller
         _productService = productService;
     }
 
-    public async Task<IActionResult> ProductIndex()
+    public async Task<IActionResult> Index()
     {
         var responseDto = await _productService.GetAllProductsAsync<ResponseDto>();
         if (responseDto != null && responseDto.IsSuccess)
@@ -24,5 +24,26 @@ public class ProductController : Controller
         }
 
         return View();
+    }
+
+    public IActionResult Create()
+    {
+        return View();
+    }
+    
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Create(ProductDto model)
+    {
+        if (ModelState.IsValid)
+        {
+            var response = await _productService.CreateProductAsync<ResponseDto>(model);
+            if (response != null && response.IsSuccess)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+        }
+        
+        return View(model);
     }
 }

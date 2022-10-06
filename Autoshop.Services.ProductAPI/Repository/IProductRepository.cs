@@ -1,5 +1,4 @@
-﻿using Autoshop.Services.ProductAPI.Models;
-using Autoshop.Services.ProductAPI.Models.Dto;
+﻿using Autoshop.Services.ProductAPI.Models.Dto;
 
 namespace Autoshop.Services.ProductAPI.Repository
 {
