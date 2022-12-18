@@ -11,29 +11,35 @@ namespace Autoshop.Services.ProductAPI.Repository
         private readonly ApplicationDbContext _db;
 
         private IMapper _mapper;
+        
+        private readonly ILogger<ProductRepository> logger;
 
-        public ProductRepository(ApplicationDbContext dbContext, IMapper mapper)
+        public ProductRepository(
+            ApplicationDbContext dbContext,
+            IMapper mapper,
+            ILogger<ProductRepository> logger)
         {
             _db = dbContext;
             _mapper = mapper;
+            this.logger = logger;
         }
 
         public async Task<IEnumerable<ProductDto>> GetProducts()
         {
-            List<Product> productList = await _db.Products.ToListAsync();
+            var productList = await _db.Products.ToListAsync();
             return _mapper.Map<List<ProductDto>>(productList);
         }
 
         public async Task<ProductDto> GetProductById(int productId)
         {
-            Product? productList = await _db.Products
-                .FirstOrDefaultAsync(x => x.ProductId == productId)!;
+            var productList = await _db.Products
+                .FirstOrDefaultAsync(x => x.ProductId == productId);
             return _mapper.Map<ProductDto>(productList);
         }
 
         public async Task<ProductDto> CreateUpdateProduct(ProductDto productDto)
         {
-            Product product = _mapper.Map<ProductDto, Product>(productDto);
+            var product = _mapper.Map<ProductDto, Product>(productDto);
             if (product.ProductId > 0)
             {
                 _db.Products.Update(product);
@@ -52,14 +58,16 @@ namespace Autoshop.Services.ProductAPI.Repository
         {
             try
             {
-                Product? product = await _db.Products.FirstOrDefaultAsync(x => x.ProductId == productId);
-                if (product != null) _db.Products.Remove(product);
+                var product = await _db.Products.FirstOrDefaultAsync(x => x.ProductId == productId);
+                if (product == null) throw new KeyNotFoundException("Product with current id not found");
+                _db.Products.Remove(product);
                 await _db.SaveChangesAsync();
                 return true;
             }
             catch (Exception e)
             {
-                return false;
+                logger.LogError(e, e.Message);
+                throw;
             }
         }
     }

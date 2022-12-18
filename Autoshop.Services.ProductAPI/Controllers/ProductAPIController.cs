@@ -1,22 +1,20 @@
 ﻿using Autoshop.Services.ProductAPI.Models.Dto;
 using Autoshop.Services.ProductAPI.Repository;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Autoshop.Services.ProductAPI.Controllers
 {
     [Route("api/products")]
-    public class ProductAPIController : ControllerBase
+    public class ProductApiController : ControllerBase
     {
         protected ResponseDto _response;
 
         private IProductRepository _productRepository;
 
-        public ProductAPIController(IProductRepository repository)
+        public ProductApiController(IProductRepository repository)
         {
             _productRepository = repository;
-            this._response = new ResponseDto();
+            _response = new ResponseDto();
         }
 
         [HttpGet]
@@ -24,13 +22,13 @@ namespace Autoshop.Services.ProductAPI.Controllers
         {
             try
             {
-                IEnumerable<ProductDto> productDtos = await _productRepository.GetProducts();
+                var productDtos = await _productRepository.GetProducts();
                 _response.Result = productDtos;
             }
             catch (Exception ex)
             {
                 _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string>() {ex.ToString()};
+                _response.ErrorMessages = new List<string> {ex.ToString()};
             }
 
             return _response;
@@ -42,13 +40,13 @@ namespace Autoshop.Services.ProductAPI.Controllers
         {
             try
             {
-                ProductDto productDtos = await _productRepository.GetProductById(id);
+                var productDtos = await _productRepository.GetProductById(id);
                 _response.Result = productDtos;
             }
             catch (Exception ex)
             {
                 _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string>() { ex.ToString() };
+                _response.ErrorMessages = new List<string> { ex.ToString() };
             }
 
             return _response;
@@ -59,13 +57,13 @@ namespace Autoshop.Services.ProductAPI.Controllers
         {
             try
             {
-                ProductDto model = await _productRepository.CreateUpdateProduct(productDto);
+                var model = await _productRepository.CreateUpdateProduct(productDto);
                 _response.Result = model;
             }
             catch (Exception ex)
             {
                 _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string>() { ex.ToString() };
+                _response.ErrorMessages = new List<string> { ex.ToString() };
             }
 
             return _response;
@@ -76,30 +74,31 @@ namespace Autoshop.Services.ProductAPI.Controllers
         {
             try
             {
-                ProductDto model = await _productRepository.CreateUpdateProduct(productDto);
+                var model = await _productRepository.CreateUpdateProduct(productDto);
                 _response.Result = model;
             }
             catch (Exception ex)
             {
                 _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string>() { ex.ToString() };
+                _response.ErrorMessages = new List<string> { ex.ToString() };
             }
 
             return _response;
         }
 
         [HttpDelete]
+        [Route("{id}")]
         public async Task<ResponseDto> Delete(int id)
         {
             try
             {
-                bool isSuccess = await _productRepository.DeleteProduct(id);
+                var isSuccess = await _productRepository.DeleteProduct(id);
                 _response.Result = isSuccess;
             }
             catch (Exception ex)
             {
                 _response.IsSuccess = false;
-                _response.ErrorMessages = new List<string>() { ex.ToString() };
+                _response.ErrorMessages = new List<string> { ex.ToString() };
             }
 
             return _response;
