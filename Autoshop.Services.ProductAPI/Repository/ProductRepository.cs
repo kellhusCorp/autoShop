@@ -10,7 +10,7 @@ namespace Autoshop.Services.ProductAPI.Repository
     {
         private readonly ApplicationDbContext _db;
 
-        private IMapper _mapper;
+        private readonly IMapper _mapper;
         
         private readonly ILogger<ProductRepository> logger;
 
