@@ -9,7 +9,7 @@ namespace Autoshop.Services.ProductAPI.Controllers
     {
         protected ResponseDto _response;
 
-        private IProductRepository _productRepository;
+        private readonly IProductRepository _productRepository;
 
         public ProductApiController(IProductRepository repository)
         {
