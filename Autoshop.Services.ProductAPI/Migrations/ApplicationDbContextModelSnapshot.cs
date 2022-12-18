@@ -56,38 +56,38 @@ namespace Autoshop.Services.ProductAPI.Migrations
                         new
                         {
                             ProductId = 1,
-                            CategoryName = "Appetizer",
-                            Description = "Praesent scelerisque, mi sed",
-                            ImageUrl = "",
-                            Name = "Samosa",
-                            Price = 15.0
+                            Name = "Leopard 2",
+                            Price = 150000.0,
+                            Description = string.Empty,
+                            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Leopard_2_A5_der_Bundeswehr.jpg/300px-Leopard_2_A5_der_Bundeswehr.jpg",
+                            CategoryName = "Main battle tanks"
                         },
                         new
                         {
                             ProductId = 2,
-                            CategoryName = "Appetizer",
-                            Description = "Praesent scelerisque, mi sed",
-                            ImageUrl = "",
-                            Name = "Samosa",
-                            Price = 13.99
+                            Name = "Type 99A",
+                            Price = 200000.0,
+                            Description = string.Empty,
+                            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/ZTZ-99A_MBT_20170716.jpg/300px-ZTZ-99A_MBT_20170716.jpg",
+                            CategoryName = "Main battle tanks"
                         },
                         new
                         {
                             ProductId = 3,
-                            CategoryName = "Dessert",
-                            Description = "Praesent scelerisque, mi sed",
-                            ImageUrl = "",
-                            Name = "Samosa",
-                            Price = 22.0
+                            Name = "Challenger 2",
+                            Price = 100000.0,
+                            Description = string.Empty,
+                            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Challenger_2_Main_Battle_Tank_patrolling_outside_Basra%2C_Iraq_MOD_45148325.jpg/300px-Challenger_2_Main_Battle_Tank_patrolling_outside_Basra%2C_Iraq_MOD_45148325.jpg",
+                            CategoryName = "Main battle tanks"
                         },
                         new
                         {
                             ProductId = 4,
-                            CategoryName = "Entree",
-                            Description = "Praesent scelerisque, mi sed",
-                            ImageUrl = "",
-                            Name = "Samosa",
-                            Price = 15.0
+                            Name = "M1A1/M1A2",
+                            Price = 175000.0,
+                            Description = string.Empty,
+                            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Mounted_Soldier_System_%28MSS%29.jpg/300px-Mounted_Soldier_System_%28MSS%29.jpg",
+                            CategoryName = "Main battle tanks"
                         });
                 });
 #pragma warning restore 612, 618
