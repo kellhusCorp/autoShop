@@ -5,11 +5,8 @@ namespace Autoshop.Web.Services
 {
     public class ProductService : BaseService, IProductService
     {
-        private readonly IHttpClientFactory _clientFactory;
-
         public ProductService(IHttpClientFactory httpClient) : base(httpClient)
         {
-            _clientFactory = httpClient;
         }
 
         public async Task<T> GetAllProductsAsync<T>()
@@ -18,7 +15,7 @@ namespace Autoshop.Web.Services
             {
                 ApiType = SD.ApiType.GET,
                 Url = SD.ProductAPIBase + "/api/products",
-                AccessToken = ""
+                AccessToken = string.Empty
             });
         }
 
@@ -28,7 +25,7 @@ namespace Autoshop.Web.Services
             {
                 ApiType = SD.ApiType.GET,
                 Url = SD.ProductAPIBase + "/api/products/" + id,
-                AccessToken = ""
+                AccessToken = string.Empty
             });
         }
 
@@ -39,7 +36,7 @@ namespace Autoshop.Web.Services
                 ApiType = SD.ApiType.POST,
                 Data = productDto,
                 Url = SD.ProductAPIBase + "/api/products",
-                AccessToken = ""
+                AccessToken = string.Empty
             });
         }
 
@@ -50,7 +47,7 @@ namespace Autoshop.Web.Services
                 ApiType = SD.ApiType.PUT,
                 Data = productDto,
                 Url = SD.ProductAPIBase + "/api/products",
-                AccessToken = ""
+                AccessToken = string.Empty
             });
         }
 
@@ -60,7 +57,7 @@ namespace Autoshop.Web.Services
             {
                 ApiType = SD.ApiType.DELETE,
                 Url = SD.ProductAPIBase + "/api/products/" + id,
-                AccessToken = ""
+                AccessToken = string.Empty
             });
         }
     }
