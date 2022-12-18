@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{3D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Autoshop.Services.ProductAPI", "Autoshop.Services.ProductAPI\Autoshop.Services.ProductAPI.csproj", "{200FA082-636F-484D-8305-9658595E4843}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Autoshop.Services.Identity", "Autoshop.Services.Identity\Autoshop.Services.Identity.csproj", "{67AC48CD-B0AC-4638-AF2F-FFE4CA705D81}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{200FA082-636F-484D-8305-9658595E4843}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{200FA082-636F-484D-8305-9658595E4843}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{200FA082-636F-484D-8305-9658595E4843}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67AC48CD-B0AC-4638-AF2F-FFE4CA705D81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67AC48CD-B0AC-4638-AF2F-FFE4CA705D81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67AC48CD-B0AC-4638-AF2F-FFE4CA705D81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67AC48CD-B0AC-4638-AF2F-FFE4CA705D81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{1F6D07C6-6740-4794-929E-748AE24A92B1} = {48D7E9E0-81B8-4015-BC0D-4E669DE52403}
 		{200FA082-636F-484D-8305-9658595E4843} = {3D530298-6A7E-4D37-AB18-ED5B15D164CF}
+		{67AC48CD-B0AC-4638-AF2F-FFE4CA705D81} = {3D530298-6A7E-4D37-AB18-ED5B15D164CF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C4D5EE54-AEC5-45B9-BF82-927C711D4CAE}
