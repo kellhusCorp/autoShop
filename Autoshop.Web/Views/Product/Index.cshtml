@@ -49,11 +49,11 @@
                         @item.Price.ToString("c")
                     </td>
                     <td>
-                        <a asp-action="EditProduct" class="btn btn-success" asp-route-productId="@item.ProductId">
-                            Edit
+                        <a asp-action="Edit" asp-controller="Product" class="btn btn-success" asp-route-productId="@item.ProductId">
+                            <i class="oi oi-pencil"></i>
                         </a>
-                        <a asp-action="DeleteProduct" class="btn btn-danger" asp-route-productId="@item.ProductId">
-                            Delete
+                        <a asp-action="Delete" asp-controller="Product"  class="btn btn-danger" asp-route-productId="@item.ProductId">
+                            <i class="oi oi-trash"></i>
                         </a>
                     </td>
                 </tr>
