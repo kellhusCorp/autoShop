@@ -1,5 +1,6 @@
 ﻿using Autoshop.Web.Models;
 using Autoshop.Web.Services.IServices;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -16,8 +17,8 @@ public class ProductController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var responseDto = await _productService.GetAllProductsAsync<ResponseDto>();
-        if (responseDto != null && responseDto.IsSuccess)
+        var responseDto = await _productService.GetAllProductsAsync<ResponseDto>(await GetTokenAsync());
+        if (responseDto is {IsSuccess: true})
         {
             var productsDtos = JsonConvert.DeserializeObject<ProductDto[]>(Convert.ToString(responseDto.Result));
             return View(productsDtos);
@@ -37,7 +38,7 @@ public class ProductController : Controller
     {
         if (ModelState.IsValid)
         {
-            var response = await _productService.CreateProductAsync<ResponseDto>(model);
+            var response = await _productService.CreateProductAsync<ResponseDto>(model, await GetTokenAsync());
             if (response != null && response.IsSuccess)
             {
                 return RedirectToAction(nameof(Index));
@@ -51,7 +52,7 @@ public class ProductController : Controller
     [Route("Product/Edit/{productId:int}")]
     public async Task<IActionResult> Edit(int productId)
     {
-        var response = await _productService.GetProductByIdAsync<ResponseDto>(productId);
+        var response = await _productService.GetProductByIdAsync<ResponseDto>(productId, await GetTokenAsync());
         if (response != null && response.IsSuccess)
         {
             var productDto = JsonConvert.DeserializeObject<ProductDto>(Convert.ToString(response.Result));
@@ -63,7 +64,7 @@ public class ProductController : Controller
     [HttpGet]
     public async Task<IActionResult> Delete(int productId)
     {
-        var response = await _productService.GetProductByIdAsync<ResponseDto>(productId);
+        var response = await _productService.GetProductByIdAsync<ResponseDto>(productId, await GetTokenAsync());
         if (response != null && response.IsSuccess)
         {
             var model = JsonConvert.DeserializeObject<ProductDto>(response.Result.ToString());
@@ -79,7 +80,7 @@ public class ProductController : Controller
     {
         if (model.ProductId != 0)
         {
-            var response = await _productService.DeleteProductAsync<ResponseDto>(model.ProductId);
+            var response = await _productService.DeleteProductAsync<ResponseDto>(model.ProductId, await GetTokenAsync());
             if (response.IsSuccess)
             {
                 return RedirectToAction(nameof(Index));
@@ -95,7 +96,7 @@ public class ProductController : Controller
     {
         if (ModelState.IsValid)
         {
-            var response = await _productService.UpdateProductAsync<ResponseDto>(model);
+            var response = await _productService.UpdateProductAsync<ResponseDto>(model, await GetTokenAsync());
             if (response != null && response.IsSuccess)
             {
                 return RedirectToAction(nameof(Index));
@@ -104,5 +105,9 @@ public class ProductController : Controller
         
         return View(model);
     }
-    
+
+    private async Task<string?> GetTokenAsync()
+    {
+        return await HttpContext.GetTokenAsync("access_token");
+    }
 }
