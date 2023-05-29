@@ -1,5 +1,5 @@
-﻿using System.Text;
-using System.Text.Json.Serialization;
+﻿using System.Net.Http.Headers;
+using System.Text;
 using Autoshop.Web.Models;
 using Autoshop.Web.Services.IServices;
 using Newtonsoft.Json;
@@ -30,6 +30,11 @@ namespace Autoshop.Web.Services
                 if (apiRequest.Data != null)
                 {
                     message.Content = new StringContent(JsonConvert.SerializeObject(apiRequest.Data), Encoding.UTF8, "application/json");
+                }
+
+                if (!string.IsNullOrEmpty(apiRequest.AccessToken))
+                {
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiRequest.AccessToken);
                 }
 
                 HttpResponseMessage apiResponse = null;

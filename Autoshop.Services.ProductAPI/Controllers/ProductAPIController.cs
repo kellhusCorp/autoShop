@@ -18,7 +18,7 @@ namespace Autoshop.Services.ProductAPI.Controllers
             _response = new ResponseDto();
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         [HttpGet]
         public async Task<ResponseDto> Get()
         {
@@ -36,7 +36,7 @@ namespace Autoshop.Services.ProductAPI.Controllers
             return _response;
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         [HttpGet]
         [Route("{id}")]
         public async Task<ResponseDto> Get(int id)
@@ -55,7 +55,7 @@ namespace Autoshop.Services.ProductAPI.Controllers
             return _response;
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         [HttpPost]
         public async Task<ResponseDto> Post([FromBody] ProductDto productDto)
         {
@@ -73,7 +73,7 @@ namespace Autoshop.Services.ProductAPI.Controllers
             return _response;
         }
         
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         [HttpPut]
         public async Task<ResponseDto> Put([FromBody] ProductDto productDto)
         {
@@ -91,7 +91,7 @@ namespace Autoshop.Services.ProductAPI.Controllers
             return _response;
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         [HttpDelete]
         [Route("{id}")]
         public async Task<ResponseDto> Delete(int id)
